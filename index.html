@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>12 Axes em grupo</title>
+<meta name="description" content="Compare o resultado do 12 Axes do grupo inteiro: ideologia do grupo, brigas, duelos e todos os 12 eixos no mesmo gráfico.">
+<meta property="og:title" content="12 Axes em grupo">
+<meta property="og:description" content="Todo mundo no mesmo gráfico. Quem pensa igual e quem vai brigar no almoço.">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#6c2bd9">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%231f3a93'/%3E%3Cstop offset='.5' stop-color='%236c2bd9'/%3E%3Cstop offset='1' stop-color='%23d6336c'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='url(%23g)'/%3E%3Ccircle cx='11' cy='13' r='5' fill='%23fff' opacity='.9'/%3E%3Ccircle cx='21' cy='13' r='5' fill='%23fff' opacity='.6'/%3E%3Ccircle cx='16' cy='21' r='5' fill='%23fff' opacity='.75'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800;900&family=Roboto+Mono:wght@500;700&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#eef0f4;--card:#fff;--fg:#1b1f2a;--mut:#6b7385;--line:#e2e5ec;--soft:#f5f6f9;
+  --shadow:0 2px 0 rgba(0,0,0,.04),0 10px 30px -12px rgba(20,30,60,.18)}
+@media (prefers-color-scheme:dark){:root{--bg:#12141b;--card:#1c1f29;--fg:#eef0f6;--mut:#8e95a8;--line:#2c3040;--soft:#232735;--shadow:0 10px 30px -12px rgba(0,0,0,.6)}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.5 Montserrat,system-ui,sans-serif}
+input,select,button,textarea{font-family:inherit}
+.wrap{max-width:1100px;margin:0 auto;padding:0 18px 60px}
+header{background:linear-gradient(120deg,#1f3a93 0%,#6c2bd9 45%,#d6336c 100%);color:#fff;padding:40px 18px 96px;text-align:center;position:relative;overflow:hidden}
+header:before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 20% 10%,rgba(255,255,255,.18),transparent 40%),radial-gradient(circle at 85% 80%,rgba(255,255,255,.12),transparent 45%)}
+header:after{content:"";position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.07) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.07) 1px,transparent 1px);background-size:28px 28px;mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%);-webkit-mask-image:radial-gradient(ellipse at center,#000 30%,transparent 75%)}
+header h1{position:relative;z-index:1;margin:0;font-size:clamp(28px,5vw,46px);font-weight:900;letter-spacing:-1px}
+header h1 span{opacity:.75;font-weight:600}
+header p{position:relative;z-index:1;margin:6px 0 0;opacity:.85;font-weight:600}
+.card{background:var(--card);border-radius:18px;box-shadow:var(--shadow);padding:24px;margin-top:18px}
+.first{margin-top:-64px;position:relative}
+h2{font-size:12px;letter-spacing:2px;text-transform:uppercase;color:var(--mut);margin:0 0 14px;font-weight:800}
+h2.big{display:flex;align-items:center;gap:12px;font-size:22px;letter-spacing:-.3px;text-transform:none;color:var(--fg);font-weight:900;margin-bottom:18px}
+h2.big small{font-size:13px;font-weight:600;color:var(--mut);letter-spacing:0;margin-left:2px}
+.hi{width:38px;height:38px;border-radius:12px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--c),color-mix(in srgb,var(--c) 55%,#d6336c));box-shadow:0 6px 14px -6px var(--c);flex:none}
+.hi svg{width:20px;height:20px}
+/* sticky nav */
+nav{position:sticky;top:0;z-index:20;display:flex;justify-content:center;gap:4px;flex-wrap:wrap;padding:10px;margin:18px -18px 0;background:color-mix(in srgb,var(--bg) 80%,transparent);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px)}
+nav a{padding:7px 14px;border-radius:999px;font-weight:800;font-size:13px;color:var(--mut);text-decoration:none;transition:.15s}
+nav a:hover{background:var(--card);color:var(--fg);box-shadow:var(--shadow)}
+section{scroll-margin-top:70px}
+/* entrance */
+@keyframes up{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+.card{animation:up .55s cubic-bezier(.2,.8,.2,1) both}
+.card:nth-of-type(2){animation-delay:.05s}.card:nth-of-type(3){animation-delay:.1s}.card:nth-of-type(4){animation-delay:.15s}
+@keyframes grow{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes pop{from{opacity:0;transform:scale(.4)}to{opacity:1;transform:scale(1)}}
+@media (prefers-reduced-motion:reduce){.card,.seg,.lane .dot{animation:none!important}}
+.hint{color:var(--mut);font-size:13px;margin:8px 0 0}
+.foot{color:var(--mut);font-size:12px;margin-top:12px}
+
+/* hero: group ideology */
+.hero{display:grid;grid-template-columns:auto 1fr;gap:26px;align-items:center}
+@media(max-width:760px){.hero{grid-template-columns:1fr;text-align:center}}
+.stack{display:flex;justify-content:center;padding-left:18px}
+.stack .av{width:64px;height:64px;margin-left:-18px;border:4px solid var(--card);font-size:18px}
+.kicker{font-size:12px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#6c2bd9}
+.ideo{font-size:clamp(24px,3.6vw,36px);font-weight:900;line-height:1.1;margin:4px 0 10px;background:linear-gradient(120deg,#1f3a93,#6c2bd9 55%,#d6336c);-webkit-background-clip:text;background-clip:text;color:transparent}
+.pills{display:flex;flex-wrap:wrap;gap:6px}
+.pill{font-size:12px;font-weight:800;padding:4px 10px;border-radius:999px;color:#fff;background:var(--c)}
+.pill.n{background:var(--soft);color:var(--mut)}
+@media(max-width:760px){.pills{justify-content:center}}
+
+/* input */
+details{margin-top:20px;border-top:1px solid var(--line);padding-top:16px}
+details summary{cursor:pointer;font-weight:700;list-style:none;display:flex;align-items:center;gap:8px}
+details summary::-webkit-details-marker{display:none}
+details summary:before{content:"+";display:inline-grid;place-items:center;width:22px;height:22px;border-radius:6px;background:var(--line);font-weight:800}
+details[open] summary:before{content:"−"}
+textarea{width:100%;min-height:130px;margin-top:12px;background:var(--soft);color:var(--fg);border:2px solid var(--line);border-radius:10px;padding:12px;font:12px/1.5 'Roboto Mono',monospace;resize:vertical}
+textarea:focus{outline:none;border-color:#6c2bd9}
+.btn{display:inline-block;border:0;border-radius:999px;padding:10px 22px;font-weight:700;font-size:14px;cursor:pointer;margin-top:12px;margin-right:6px;background:linear-gradient(120deg,#1f3a93,#6c2bd9);color:#fff;box-shadow:0 6px 16px -6px #6c2bd9}
+.btn.ghost{background:transparent;color:var(--fg);box-shadow:none;border:2px solid var(--line)}
+.err{color:#e5484d;font-size:13px;margin-top:8px;font-weight:600}
+
+/* avatars & chips */
+.av{border-radius:50%;display:grid;place-items:center;color:#fff;font-weight:800;flex:none;background-size:cover;background-position:center}
+.chips{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px}
+.chip{display:flex;align-items:center;gap:8px;padding:5px 8px 5px 5px;border-radius:999px;border:2px solid color-mix(in srgb,var(--pc) 45%,var(--line));transition:.15s}
+.chip.off{opacity:.35}
+.chip .av{width:34px;height:34px;font-size:11px;cursor:pointer}
+.chip input[type=text]{border:0;background:transparent;color:var(--fg);font-weight:700;font-size:14px;width:96px}
+.chip input[type=text]:focus{outline:none}
+.cam{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;cursor:pointer;color:var(--mut);background:var(--soft)}
+.cam:hover{color:var(--fg)}
+
+/* icons */
+.ico{width:34px;height:34px;border-radius:10px;display:grid;place-items:center;color:var(--c);background:color-mix(in srgb,var(--c) 14%,transparent);flex:none}
+.ico svg{width:20px;height:20px}
+.ico.s{width:26px;height:26px;border-radius:8px}.ico.s svg{width:15px;height:15px}
+.cat-title{display:flex;align-items:center;gap:10px;margin:26px 0 4px;font-weight:800;font-size:18px}
+.cat-title:first-child{margin-top:4px}
+.cat-ico{width:30px;height:30px;border-radius:9px;display:grid;place-items:center;color:#fff;background:var(--c)}
+.cat-ico svg{width:18px;height:18px}
+
+/* axis bars */
+.axis{padding:18px 0 8px;border-top:1px solid var(--line)}
+.poles{display:flex;justify-content:space-between;margin:10px 0 6px;font-size:13px;font-weight:900}
+.poles span:first-child{color:var(--a)}.poles span:last-child{color:var(--b)}
+.split{display:flex;height:30px;border-radius:999px;overflow:hidden;box-shadow:inset 0 0 0 1px rgba(0,0,0,.05)}
+.seg{display:flex;align-items:center;color:#fff;font:700 13px 'Roboto Mono',monospace;padding:0 12px;white-space:nowrap;overflow:hidden;min-width:0;transform-origin:left;animation:grow .9s cubic-bezier(.2,.8,.2,1) both}
+.seg.l{background:linear-gradient(90deg,var(--a),color-mix(in srgb,var(--a) 85%,#fff))}
+.seg.r{background:linear-gradient(90deg,color-mix(in srgb,var(--b) 85%,#fff),var(--b));justify-content:flex-end;flex:1;transform-origin:right}
+.lane{position:relative;height:40px;margin:2px 0 0}
+.lane .line{position:absolute;left:0;right:0;top:19px;height:2px;background:var(--line);border-radius:2px}
+.lane .mid{position:absolute;left:50%;top:12px;width:2px;height:16px;background:var(--line);margin-left:-1px}
+.lane .range{position:absolute;top:15px;height:10px;border-radius:999px;background:linear-gradient(90deg,var(--a),var(--b));opacity:.25}
+.lane .dot{position:absolute;top:5px;width:30px;height:30px;margin-left:-15px;font-size:10px;border:3px solid var(--card);box-shadow:0 3px 8px rgba(0,0,0,.25);animation:pop .5s cubic-bezier(.2,1.4,.4,1) both}
+.lane .dia{top:13px}
+.axis-head{display:flex;align-items:center;gap:10px}
+.axis-head b{font-size:15px}
+.axis-head .div{margin-left:auto;font-size:12px;font-weight:700;color:var(--mut)}
+.axis-head .div b{color:var(--fg);font-size:12px}
+.row{display:grid;grid-template-columns:120px 1fr 120px;gap:12px;align-items:center;margin-top:6px}
+@media(max-width:640px){.row{grid-template-columns:70px 1fr 70px}.pole span{display:none}}
+.pole{font-size:12px;font-weight:800;color:var(--pc);line-height:1.2}
+.pole.r{text-align:right}
+.pole span{display:block;font-family:'Roboto Mono';font-size:11px;color:var(--mut);font-weight:500}
+.track{position:relative;height:46px}
+.bar{position:absolute;left:0;right:0;top:17px;height:12px;border-radius:999px;background:linear-gradient(90deg,var(--a),color-mix(in srgb,var(--a) 50%,var(--b)) 50%,var(--b))}
+.tick{position:absolute;top:13px;width:2px;height:20px;background:var(--card);opacity:.75;transform:translateX(-1px)}
+.range{position:absolute;top:12px;height:22px;border-radius:999px;border:2px solid var(--fg);opacity:.15}
+.dot{position:absolute;top:8px;width:30px;height:30px;margin-left:-15px;font-size:10px;border:3px solid var(--card);transition:transform .15s}
+.dot:hover{transform:scale(1.3);z-index:5}
+.dia{position:absolute;top:16px;width:14px;height:14px;margin-left:-7px;background:var(--fg);border:2px solid var(--card);transform:rotate(45deg);border-radius:3px}
+.tip{position:fixed;pointer-events:none;background:var(--fg);color:var(--card);padding:6px 10px;border-radius:8px;font-size:12px;font-weight:700;opacity:0;transition:opacity .1s;z-index:50;white-space:nowrap}
+
+/* profiles */
+.profiles{display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:16px}
+.prof{border-radius:16px;overflow:hidden;background:var(--soft)}
+.prof .top{height:66px;background:linear-gradient(120deg,var(--pc),color-mix(in srgb,var(--pc) 40%,#d6336c))}
+.prof .big{width:84px;height:84px;margin:-46px auto 0;border:5px solid var(--soft);font-size:26px;position:relative;cursor:pointer}
+.prof .big:after{content:"trocar foto";position:absolute;inset:0;border-radius:50%;background:rgba(0,0,0,.45);display:grid;place-items:center;font-size:10px;opacity:0;transition:.15s}
+.prof .big:hover:after{opacity:1}
+.prof .body{padding:6px 16px 18px;text-align:center}
+.prof h3{margin:6px 0 2px;font-size:20px;font-weight:900}
+.prof .lab{font-size:13px;font-weight:800;color:var(--pc);min-height:36px;line-height:1.35}
+.tag{display:inline-block;font-size:11px;font-weight:800;letter-spacing:1px;text-transform:uppercase;padding:3px 10px;border-radius:999px;background:var(--card);color:var(--mut);margin-top:4px}
+.prof .mini{width:140px;margin:6px auto 0;display:block}
+.sec{font-size:11px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;color:var(--mut);margin:12px 0 6px;text-align:left}
+.strong{display:flex;align-items:center;gap:8px;text-align:left;margin:5px 0;font-size:13px;font-weight:700}
+.strong .v{margin-left:auto;font-family:'Roboto Mono';font-size:12px}
+.mate{display:flex;align-items:center;gap:8px;background:var(--card);border-radius:12px;padding:8px 10px;text-align:left;font-size:13px;margin-top:6px}
+.mate .av{width:30px;height:30px;font-size:10px}
+.mate small{display:block;color:var(--mut);font-size:10px;font-weight:800;letter-spacing:1px;text-transform:uppercase}
+
+/* fights */
+.fights{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:14px}
+.fight{background:var(--soft);border-radius:14px;padding:14px 16px}
+.fight .h{display:flex;align-items:center;gap:10px;font-weight:800}
+.fight .h small{margin-left:auto;color:var(--mut);font-size:12px}
+.vs{display:grid;grid-template-columns:1fr auto 1fr;gap:10px;align-items:center;margin-top:12px}
+.side{display:flex;flex-direction:column;gap:6px}
+.side.r{align-items:flex-end;text-align:right}
+.side .t{font-size:11px;font-weight:800;color:var(--pc);text-transform:uppercase;letter-spacing:1px}
+.who{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:700}
+.side.r .who{flex-direction:row-reverse}
+.who .av{width:26px;height:26px;font-size:9px}
+.who span{font-family:'Roboto Mono';font-size:11px;color:var(--mut)}
+.x{font-weight:900;font-size:13px;color:var(--mut)}
+.cons{display:flex;flex-wrap:wrap;gap:10px}
+.con{display:flex;align-items:center;gap:10px;background:var(--soft);border-radius:12px;padding:10px 14px;font-size:13px;font-weight:700}
+.con b{color:var(--pc)}
+
+/* duel */
+.duelsel{display:flex;align-items:center;gap:12px;flex-wrap:wrap}
+.duelsel select{padding:9px 12px;border-radius:10px;border:2px solid var(--line);background:var(--soft);color:var(--fg);font-weight:700;font-size:14px}
+.duelhead{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:16px;margin:20px 0 6px}
+.dp{display:flex;align-items:center;gap:12px;font-weight:900;font-size:20px}
+.dp.r{flex-direction:row-reverse;text-align:right}
+.dp .av{width:56px;height:56px;font-size:16px}
+.score{text-align:center}
+.score b{display:block;font-size:40px;font-weight:900;line-height:1}
+.score small{color:var(--mut);font-weight:800;font-size:11px;letter-spacing:1.5px;text-transform:uppercase}
+.drow{display:grid;grid-template-columns:150px 1fr 60px;gap:12px;align-items:center;padding:7px 0;border-top:1px solid var(--line);font-size:13px;font-weight:700}
+@media(max-width:640px){.drow{grid-template-columns:90px 1fr 46px}}
+.dtrack{position:relative;height:24px}
+.dtrack .line{position:absolute;left:0;right:0;top:11px;height:2px;background:var(--line)}
+.dtrack .gap{position:absolute;top:8px;height:8px;border-radius:4px;opacity:.35}
+.dtrack .av{position:absolute;top:0;width:24px;height:24px;margin-left:-12px;font-size:8px;border:2px solid var(--card)}
+.dd{text-align:right;font-family:'Roboto Mono';font-size:12px}
+.badge{display:inline-block;font-size:10px;font-weight:800;padding:2px 7px;border-radius:999px;margin-left:6px;vertical-align:1px}
+.badge.ok{background:#20b48622;color:#14895f}.badge.no{background:#e5484d22;color:#c62a2f}
+
+/* site links + add form */
+.site{display:inline-flex;align-items:center;gap:8px;margin-top:14px;padding:9px 16px;border-radius:999px;font-weight:800;font-size:13px;text-decoration:none;color:#fff;background:linear-gradient(120deg,#1f3a93,#6c2bd9 55%,#d6336c);box-shadow:0 6px 16px -6px #6c2bd9}
+.site.sm{margin-top:10px;padding:6px 12px;font-size:12px;box-shadow:none}
+.site svg{width:14px;height:14px}
+.add{display:grid;grid-template-columns:1fr 2fr auto auto;gap:10px;align-items:center;margin-top:8px}
+@media(max-width:760px){.add{grid-template-columns:1fr}}
+.add input[type=text]{padding:10px 12px;border-radius:10px;border:2px solid var(--line);background:var(--soft);color:var(--fg);font-size:14px;font-weight:600;width:100%}
+.add input:focus{outline:none;border-color:#6c2bd9}
+.add .btn{margin:0}
+.ph{display:flex;align-items:center;gap:8px;padding:6px 12px;border-radius:10px;border:2px dashed var(--line);cursor:pointer;font-size:13px;font-weight:700;color:var(--mut);white-space:nowrap}
+.ph .av{width:28px;height:28px}
+.status{font-size:13px;font-weight:600;margin-top:10px;color:var(--mut)}
+.status.bad{color:#e5484d}.status.good{color:#14895f}
+.rm{border:0;background:none;color:var(--mut);cursor:pointer;font-size:16px;line-height:1;padding:0 4px}
+.rm:hover{color:#e5484d}
+.cloud{font-size:9px;font-weight:800;color:#6c2bd9;letter-spacing:.5px}
+
+/* grid / tables */
+.grid{display:grid;grid-template-columns:1.1fr 1fr;gap:18px}
+@media(max-width:860px){.grid{grid-template-columns:1fr}}
+.grid .card{margin-top:18px}
+svg text{fill:var(--fg);font:700 10px Montserrat}
+.scroll{overflow-x:auto}
+.aff{border-collapse:separate;border-spacing:4px;width:100%}
+.aff th{font-size:12px;font-weight:800;padding:4px;white-space:nowrap}
+.aff td{text-align:center;border-radius:8px;padding:10px 4px;font-weight:800;font-size:14px;color:#fff;min-width:46px;cursor:pointer}
+.aff td.self{background:var(--line)!important;color:var(--mut);cursor:default}
+table.t{border-collapse:collapse;width:100%;font-size:13px}
+.t th,.t td{padding:8px 10px;border-bottom:1px solid var(--line);text-align:right;white-space:nowrap}
+.t th:first-child,.t td:first-child{text-align:left}
+.t th{font-size:12px;font-weight:800}
+.t td{font-family:'Roboto Mono'}
+.t td:first-child{font-family:Montserrat;font-weight:700}
+</style>
+</head>
+<body>
+<header>
+  <h1>12 Axes <span>em grupo</span></h1>
+  <p>Todo mundo no mesmo gráfico. Quem pensa igual e quem vai brigar no almoço.</p>
+</header>
+
+<div class="wrap">
+
+<div class="card first">
+  <div class="hero">
+    <div class="stack" id="stack"></div>
+    <div>
+      <div class="kicker">Ideologia do grupo</div>
+      <div class="ideo" id="ideo"></div>
+      <div class="pills" id="pills"></div>
+      <a class="site" id="groupLink" target="_blank" rel="noopener">Ver ideologia, políticos e países do grupo no 12 Axes</a>
+      <button class="site" id="shareBtn" style="border:0;cursor:pointer;background:var(--fg);color:var(--card);box-shadow:none">Copiar link do grupo</button>
+    </div>
+  </div>
+  <p class="foot" id="ideoNote"></p>
+  <div class="chips" id="chips"></div>
+  <p class="hint">Clique na bolinha para tirar ou colocar a pessoa nas contas. Clique no nome para renomear e na câmera para pôr foto.</p>
+  <details id="det">
+    <summary>Links do grupo</summary>
+    <textarea id="inp" spellcheck="false">Peluca: https://12axes.vercel.app/results?est=28.3&rep=46.3&pod=82&imi=20&dip=60&int=40&eco=85.5&con=80.8&com=71.7&rel=95.8&mor=88.3&tec=87
+Bruno: https://12axes.vercel.app/results?est=49.2&rep=67.2&pod=61.2&imi=40.8&dip=64.2&int=31.7&eco=48&con=55.8&com=63.3&rel=45.8&mor=67.5&tec=16.7&religion=orthodox
+Ninja: https://12axes.vercel.app/results?est=36.3&rep=35.8&pod=72.5&imi=38.7&dip=55.8&int=44.2&eco=44.5&con=61.5&com=48.7&rel=49.2&mor=22.8&tec=66.2&religion=catholic
+Petiquers: https://12axes.vercel.app/results?est=36.3&rep=94.5&pod=73&imi=36.3&dip=36.3&int=51.2&eco=85.5&con=54.3&com=63.7&rel=62.5&mor=45&tec=32.5&religion=orthodox</textarea>
+    <p class="hint">Um link por linha, com o nome antes ou depois: <b>Nome: link</b> ou <b>link Nome</b>. Aceita o link longo (/results?...) e o curto (/r?v=...).</p>
+    <button class="btn" id="go">Comparar</button>
+    <div class="err" id="err"></div>
+  </details>
+</div>
+
+<nav><a href="#perfis">Perfis</a><a href="#brigas">Brigas</a><a href="#duelo">Duelo</a><a href="#eixos">Eixos</a><a href="#radar-sec">Radar</a><a href="#numeros">Números</a><a href="#add">Adicionar</a></nav>
+
+<section id="add" class="card">
+  <h2 class="big"><span class="hi" style="--c:#20b486"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg></span>Adicionar pessoa</h2>
+  <div class="add">
+    <input type="text" id="addName" placeholder="Nome" maxlength="40">
+    <input type="text" id="addUrl" placeholder="Link do resultado do 12 Axes">
+    <label class="ph" id="addPh"><span class="av" id="addAv" style="background:var(--line);color:var(--mut)">+</span>Foto<input type="file" accept="image/*" id="addFile" hidden></label>
+    <button class="btn" id="addBtn">Adicionar</button>
+  </div>
+  <div class="status" id="status">Carregando o grupo compartilhado...</div>
+</section>
+
+<section id="perfis" class="card">
+  <h2 class="big"><span class="hi" style="--c:#2f6fed"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 21c0-4.4 3.6-7 8-7s8 2.6 8 7"/></svg></span>Perfis</h2>
+  <div class="profiles" id="profiles"></div>
+</section>
+
+<section id="brigas" class="card">
+  <h2 class="big"><span class="hi" style="--c:#e5484d"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2L4 14h7l-1 8 9-12h-7z"/></svg></span>Onde o grupo briga <small>os eixos mais divididos</small></h2>
+  <div class="fights" id="fights"></div>
+  <h2 class="big" style="margin-top:30px"><span class="hi" style="--c:#20b486"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L20 7"/></svg></span>Onde todo mundo concorda</h2>
+  <div class="cons" id="cons"></div>
+</section>
+
+<section id="duelo" class="card">
+  <h2 class="big"><span class="hi" style="--c:#f59e0b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20L14 10M14 10l3-7 4 4-7 3M20 20L10 10M10 10L7 3 3 7l7 3"/></svg></span>Duelo <small>escolha duas pessoas</small></h2>
+  <div class="duelsel"><select id="dA"></select><span class="x">VS</span><select id="dB"></select></div>
+  <div id="duel"></div>
+  <a class="site sm" id="duelLink" target="_blank" rel="noopener" style="display:none"></a>
+</section>
+
+<section id="eixos" class="card">
+  <h2 class="big"><span class="hi" style="--c:#a855f7"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h16"/><circle cx="9" cy="6" r="2" fill="currentColor"/><circle cx="15" cy="12" r="2" fill="currentColor"/><circle cx="7" cy="18" r="2" fill="currentColor"/></svg></span>Os 12 eixos <small>barra = média do grupo, bolinhas = cada um</small></h2>
+  <div id="axes"></div>
+  <p class="foot">Cada bolinha é uma pessoa e o losango é a média do grupo. A porcentagem embaixo de cada polo é a média do grupo para aquele lado. A faixa clara vai de quem está mais de um lado até quem está mais do outro. "Divergência" é o desvio padrão: quanto maior, mais dividido o grupo está.</p>
+</section>
+
+<div class="grid">
+  <section id="radar-sec" class="card"><h2 class="big"><span class="hi" style="--c:#0ea5e9"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l8.5 6.2-3.2 10H6.7L3.5 9.2z"/><path d="M12 8l4 3-1.5 4.5h-5L8 11z"/></svg></span>Radar</h2><svg id="radar" viewBox="-205 -205 410 410" width="100%"></svg>
+    <p class="foot">Quanto mais para fora, mais perto do polo da esquerda da barra (Federal, Democracia, Segurança...).</p></section>
+  <section id="afinidade" class="card"><h2 class="big"><span class="hi" style="--c:#ec4899"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z"/></svg></span>Proximidade <small>conta da página</small></h2><div class="scroll"><table class="aff" id="aff"></table></div>
+    <p class="foot">Proximidade = 100 menos a diferença média nos 12 eixos. É uma conta mais simples que a do 12 Axes, então os números saem mais altos que a compatibilidade do site. Para ver a compatibilidade oficial, abra o duelo e clique no botão do 12 Axes. Clique num quadrado para abrir o duelo.</p></section>
+</div>
+
+<section id="numeros" class="card">
+  <h2 class="big"><span class="hi" style="--c:#64748b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="M4 10h16M10 4v16"/></svg></span>Números</h2>
+  <div class="scroll"><table class="t" id="tbl"></table></div>
+  <p class="foot">Os valores são a porcentagem para o polo da esquerda, igual ao link do 12 Axes.</p>
+  <button class="btn ghost" id="ex">Copiar tabela</button>
+</section>
+
+</div>
+<footer style="text-align:center;color:var(--mut);font-size:12px;padding:10px 18px 40px">Ferramenta não oficial, feita pela galera para comparar resultados do <a href="https://12axes.vercel.app" target="_blank" rel="noopener" style="color:inherit;font-weight:700">12 Axes</a>. Os números vêm dos links de resultado de cada um.</footer>
+<div class="tip" id="tip"></div>
+
+<script>
+const I=d=>`<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">${d}</svg>`;
+// v = % for the LEFT pole (that's what the 12 Axes link stores)
+const AXES=[
+ {k:'est',n:'Estrutura',L:'Federal',R:'Unitário',aL:'Federalista',aR:'Centralizador',a:'#2f6fed',b:'#e8772e',
+  i:I('<path d="M3 10l9-6 9 6"/><path d="M5 10v8M9.5 10v8M14.5 10v8M19 10v8"/><path d="M3 20h18"/>')},
+ {k:'rep',n:'Representação',L:'Democracia',R:'Autocracia',aL:'Democrático',aR:'Autoritário',a:'#14a38b',b:'#c2255c',
+  i:I('<rect x="4" y="11" width="16" height="9" rx="1.5"/><path d="M8 11V5h8v6"/><path d="M10 8h4"/><path d="M4 15h16"/>')},
+ {k:'pod',n:'Poder',L:'Segurança',R:'Liberdade',aL:'Securitário',aR:'Libertário',a:'#475f87',b:'#d4a015',
+  i:I('<path d="M3 8l4 4 5-7 5 7 4-4-2 11H5z"/><path d="M5 19h14"/>')},
+ {k:'imi',n:'Imigração',L:'Assimilação',R:'Multicultura',aL:'Assimilacionista',aR:'Multiculturalista',a:'#e03e5e',b:'#7a52d6',
+  i:I('<path d="M14 4h5v16h-5"/><path d="M3 12h11"/><path d="M10 8l4 4-4 4"/>')},
+ {k:'dip',n:'Diplomacia',L:'Militarista',R:'Pacifista',aL:'Militarista',aR:'Pacifista',a:'#6f8f22',b:'#3a95d8',
+  i:I('<path d="M4 5h10v7H8l-4 3z"/><path d="M14 9h6v7l-3-2h-5v-2"/>')},
+ {k:'int',n:'Intervenção',L:'Não intervencionista',R:'Nacionalista',aL:'Não intervencionista',aR:'Nacionalista',a:'#3f9a62',b:'#d0561c',
+  i:I('<circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/><path d="M12 3.5c2.6 2.4 3.8 5.2 3.8 8.5s-1.2 6.1-3.8 8.5c-2.6-2.4-3.8-5.2-3.8-8.5S9.4 5.9 12 3.5z"/>')},
+ {k:'eco',n:'Economia',L:'Público',R:'Privado',aL:'Estatista',aR:'Privatista',a:'#e5484d',b:'#a07a1c',
+  i:I('<ellipse cx="12" cy="7" rx="7" ry="3"/><path d="M5 7v5c0 1.7 3.1 3 7 3s7-1.3 7-3V7"/><path d="M5 12v5c0 1.7 3.1 3 7 3s7-1.3 7-3v-5"/>')},
+ {k:'con',n:'Controle',L:'Planejamento',R:'Livre mercado',aL:'Planificador',aR:'Livre-mercadista',a:'#9a46b3',b:'#1f9a62',
+  i:I('<path d="M5 4v16M12 4v16M19 4v16"/><circle cx="5" cy="14" r="2" fill="currentColor"/><circle cx="12" cy="8" r="2" fill="currentColor"/><circle cx="19" cy="16" r="2" fill="currentColor"/>')},
+ {k:'com',n:'Comércio',L:'Protecionismo',R:'Globalismo',aL:'Protecionista',aR:'Globalista',a:'#b06a2e',b:'#1597c2',
+  i:I('<path d="M5 8h14l-1 12H6z"/><path d="M9 8V6a3 3 0 0 1 6 0v2"/>')},
+ {k:'rel',n:'Religião',L:'Irreligioso',R:'Religioso',aL:'Secular',aR:'Religioso',a:'#dd6d14',b:'#4256c4',
+  i:I('<path d="M12 6c-2-1.5-5-2-8-1.5v14c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5v-14c-3-.5-6 0-8 1.5z"/><path d="M12 6v14"/>')},
+ {k:'mor',n:'Moral',L:'Progressista',R:'Tradicionalista',aL:'Progressista',aR:'Tradicionalista',a:'#e0498f',b:'#7f5a33',
+  i:I('<path d="M12 4v16M7 20h10"/><path d="M5 7h14"/><path d="M5 7l-3 6a3 3 0 0 0 6 0z"/><path d="M19 7l-3 6a3 3 0 0 0 6 0z"/>')},
+ {k:'tec',n:'Tecnologia',L:'Tecnologia',R:'Biologia',aL:'Tecnófilo',aR:'Bioconservador',a:'#5b7fc0',b:'#58a024',
+  i:I('<rect x="7" y="7" width="10" height="10" rx="1.5"/><path d="M10 10h4v4h-4z"/><path d="M10 3v4M14 3v4M10 17v4M14 17v4M3 10h4M3 14h4M17 10h4M17 14h4"/>')}];
+const CATS=[
+ {n:'Governo',c:'#2f6fed',ax:[0,1,2],i:I('<path d="M3 10l9-6 9 6"/><path d="M5 10v8M19 10v8M3 20h18"/>')},
+ {n:'Relações exteriores',c:'#e5484d',ax:[3,4,5],i:I('<circle cx="12" cy="12" r="8.5"/><path d="M3.5 12h17"/>')},
+ {n:'Economia',c:'#20b486',ax:[6,7,8],i:I('<path d="M4 19V11M10 19V6M16 19v-5M22 19H2"/>')},
+ {n:'Sociedade',c:'#a855f7',ax:[9,10,11],i:I('<circle cx="8" cy="9" r="3"/><circle cx="16" cy="9" r="3"/><path d="M3 19c0-3 2.2-5 5-5s5 2 5 5M11 19c0-3 2.2-5 5-5s5 2 5 5"/>')}];
+const catOf=ai=>CATS.find(c=>c.ax.includes(ai));
+const COLORS=['#2f6fed','#e5484d','#20b486','#f59e0b','#a855f7','#ec4899','#0ea5e9','#f97316','#14b8a6','#6366f1','#84cc16','#be123c'];
+const KEYS=AXES.map(a=>a.k);
+const REL={orthodox:'Ortodoxo',catholic:'Católico',protestant:'Protestante',evangelical:'Evangélico',muslim:'Muçulmano',islam:'Muçulmano',jewish:'Judeu',judaism:'Judeu',buddhist:'Budista',hindu:'Hindu',atheist:'Ateu',agnostic:'Agnóstico',spiritist:'Espírita',spiritual:'Espiritualista',none:'Sem religião'};
+const EXT='<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 4h6v6"/><path d="M20 4l-9 9"/><path d="M18 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V7a1 1 0 0 1 1-1h5"/></svg>';
+const CAM='<svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle cx="12" cy="13" r="3.5"/></svg>';
+
+let people=[],showAvg=true,duel=[0,1];
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]));
+const ini=n=>{const w=n.trim().split(/\s+/);return (w.length>1?w[0][0]+w[w.length-1][0]:n.slice(0,2)).toUpperCase()};
+const col=i=>COLORS[i%COLORS.length];
+function loadPhoto(n){try{return localStorage.getItem('12ax-photo-'+n.toLowerCase())||''}catch(e){return ''}}
+const repoPhotos={};
+function probePhotos(){
+  people.forEach(p=>{const k=slug(p.name);if(k in repoPhotos)return;repoPhotos[k]=null;
+    const exts=['jpg','png','webp','jpeg','gif'];let i=0;
+    const next=()=>{if(i>=exts.length){repoPhotos[k]='';return}const src='fotos/'+k+'.'+exts[i++];const im=new Image();
+      im.onload=()=>{repoPhotos[k]=src;let ch=false;people.forEach(q=>{if(slug(q.name)===k&&!q.photo){q.photo=src;ch=true}});if(ch)render()};im.onerror=next;im.src=src};
+    next()});
+}
+const resultUrl=(vals,rel)=>SITE+'/results?'+KEYS.map(k=>k+'='+vals[k]).join('&')+(rel?'&religion='+encodeURIComponent(rel):'');
+function encodeGroup(){return people.map(p=>[p.name.replace(/[~|]/g,' '),KEYS.map(k=>p.vals[k]).join('-'),p.religion||''].join('~')).join('|')}
+function decodeGroup(g){return g.split('|').map(x=>{const [n,v,r]=x.split('~');const nums=(v||'').split('-').map(Number);
+  if(!n||nums.length!==12||nums.some(z=>isNaN(z)||z<0||z>100))return null;const vals={};KEYS.forEach((k,j)=>vals[k]=nums[j]);return {name:n.slice(0,40),url:resultUrl(vals,r)}}).filter(Boolean)}
+const ON_CLAUDE=!!(window.claude&&window.claude.use)||/claude\.(ai|site)|claudeusercontent/.test(location.hostname);
+function syncUrl(){if(ON_CLAUDE)return;try{history.replaceState(null,'',location.pathname+(people.length?'?g='+encodeURIComponent(encodeGroup()):''))}catch(e){}}
+function savePhoto(n,d){try{localStorage.setItem('12ax-photo-'+n.toLowerCase(),d)}catch(e){}}
+function lab(p){const b=ini(p.name);return people.some(q=>q!==p&&ini(q.name)===b)?p.name.replace(/\s+/g,'').slice(0,3).toUpperCase():b}
+function av(p,size,extra=''){const i=people.indexOf(p);return `<span class="av" style="width:${size}px;height:${size}px;font-size:${Math.round(size*.32)}px;background:${col(i)}${p.photo?` url(${p.photo}) center/cover`:''};${extra}">${p.photo?'':esc(lab(p))}</span>`}
+function shrink(file,cb){const r=new FileReader();r.onload=()=>{const img=new Image();img.onload=()=>{const c=document.createElement('canvas'),S=160;c.width=c.height=S;const g=c.getContext('2d');const m=Math.min(img.width,img.height);g.drawImage(img,(img.width-m)/2,(img.height-m)/2,m,m,0,0,S,S);cb(c.toDataURL('image/jpeg',.85))};img.src=r.result};r.readAsDataURL(file)}
+
+/* ---------- parsing & shared group ---------- */
+const SITE='https://12axes.vercel.app';
+let localList=[],remote=new Map(),db=null,dbWritable=true;
+const slug=n=>n.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'').replace(/[^a-z0-9_-]+/g,'-').replace(/^-+|-+$/g,'').slice(0,60)||'pessoa';
+function readLink(url){
+  let u;try{u=new URL(url)}catch(e){return null}
+  let nums=KEYS.map(k=>parseFloat(u.searchParams.get(k)));
+  if(nums.some(isNaN)&&u.searchParams.get('v'))nums=u.searchParams.get('v').split(/[-,]/).map(Number);
+  if(nums.length!==12||nums.some(v=>isNaN(v)||v<0||v>100))return null;
+  const vals={};KEYS.forEach((k,j)=>vals[k]=nums[j]);
+  return {vals,religion:(u.searchParams.get('religion')||u.searchParams.get('r')||'').toLowerCase()};
+}
+function parse(){
+  $('err').textContent='';
+  const raw=$('inp').value,re=/https?:\/\/[^\s,]+/g;let m,list=[],bad=0;
+  while((m=re.exec(raw)))list.push({url:m[0],s:m.index,e:m.index+m[0].length});
+  const clean=t=>t.replace(/^[\s,;:\-|]+|[\s,;:\-|]+$/g,'').trim();
+  list.forEach((it,i)=>{
+    it.before=clean(raw.slice(i?list[i-1].e:0,it.s).split('\n').pop());
+    it.after=clean(raw.slice(it.e,i+1<list.length?list[i+1].s:raw.length).split('\n')[0]);
+  });
+  const nameAfter=list.length&&!list[0].before&&list[0].after;
+  localList=[];
+  list.forEach(it=>{if(!readLink(it.url)){bad++;return}localList.push({name:(nameAfter?it.after:it.before)||('Pessoa '+(localList.length+1)),url:it.url})});
+  if(bad)$('err').textContent=bad+' link(s) sem os 12 valores foram ignorados.';
+  build();
+}
+function build(){
+  const prev={};people.forEach(p=>prev[p.name.toLowerCase()]=p);
+  const entries=localList.map(e=>({...e}));
+  remote.forEach(r=>{const i=entries.findIndex(e=>e.name.toLowerCase()===r.name.toLowerCase());
+    const e={name:r.name,url:r.url,photo:r.photo||'',remote:true};if(i>=0)entries[i]=e;else entries.push(e)});
+  people=entries.map(e=>{const L=readLink(e.url);if(!L)return null;const old=prev[e.name.toLowerCase()];
+    return {name:e.name,url:e.url,remote:!!e.remote,vals:L.vals,religion:L.religion,on:old?old.on:true,photo:e.photo||loadPhoto(e.name)||repoPhotos[slug(e.name)]||''}}).filter(Boolean);
+  duel=duel.map(x=>Math.min(x,Math.max(0,people.length-1)));if(duel[0]===duel[1]&&people.length>1)duel=[0,1];
+  render();probePhotos();
+}
+function status(t,cls=''){const el=$('status');el.textContent=t;el.className='status '+cls}
+async function saveRemote(p){
+  if(!db)return false;
+  try{await db.collection('members').doc(slug(p.name)).set({name:p.name,url:p.url,photo:p.photo||''});return true}
+  catch(e){if(e&&e.code==='invalid_argument'){dbWritable=false;status('Você pode ver o grupo, mas só o dono da página e quem ele convidar como Editor podem adicionar pessoas e fotos para todos. Sua foto ficou salva só neste navegador.','bad')}
+    else if(e&&e.code==='quota_exceeded')status('O espaço do grupo compartilhado encheu.','bad');
+    else status('Não consegui salvar agora. Tente de novo em instantes.','bad');return false}
+}
+async function setPhoto(p,d){p.photo=d;savePhoto(p.name,d);render();
+  if(db&&dbWritable&&await saveRemote(p))status('Foto de '+p.name+' salva para todo mundo.','good')}
+function bindPhotos(root){root.querySelectorAll('[data-f]').forEach(el=>el.onchange=()=>{const f=el.files[0];if(!f)return;const p=people[el.dataset.f];shrink(f,d=>setPhoto(p,d))})}
+async function removeRemote(name){if(!db)return;try{await db.collection('members').doc(slug(name)).delete()}catch(e){status('Não consegui remover.','bad')}}
+
+let addPhoto='';
+$('addFile').onchange=()=>{const f=$('addFile').files[0];if(!f)return;shrink(f,d=>{addPhoto=d;$('addAv').style.background=`url(${d}) center/cover`;$('addAv').textContent=''})};
+$('addBtn').onclick=async()=>{
+  const name=$('addName').value.trim(),url=$('addUrl').value.trim();
+  if(!name){status('Coloque um nome.','bad');return}
+  const L=readLink((url.match(/https?:\/\/\S+/)||[''])[0]);
+  if(!L){status('Esse link não tem os 12 valores. Copie o link da página de resultado do 12 Axes.','bad');return}
+  const realUrl=url.match(/https?:\/\/\S+/)[0];
+  const p={name,url:realUrl,photo:addPhoto||loadPhoto(name)};
+  if(addPhoto)savePhoto(name,addPhoto);
+  let shared=false;
+  if(db&&dbWritable)shared=await saveRemote(p);
+  if(!shared){ // keep it locally: append to the links box
+    const i=localList.findIndex(e=>e.name.toLowerCase()===name.toLowerCase());
+    if(i>=0)localList[i]={name,url:realUrl};else localList.push({name,url:realUrl});
+    $('inp').value=localList.map(e=>e.name+': '+e.url).join('\n');build();
+    if(!db)status(name+' entrou na tela e no link do grupo. Clique em "Copiar link do grupo" e mande para a galera.','good');
+  }else status(name+' entrou no grupo e aparece para todo mundo.','good');
+  $('addName').value='';$('addUrl').value='';addPhoto='';$('addAv').style.background='var(--line)';$('addAv').textContent='+';
+};
+
+(async()=>{
+  try{
+    if(!window.claude||!window.claude.use){status('Quem você adicionar entra no link do grupo (botão "Copiar link do grupo" lá em cima). Para deixar a pessoa fixa no site, coloque ela no grupo.json do repositório.');return}
+    const d=await window.claude.use('db');
+    if(!d){status('Entre na sua conta do Claude para ver e salvar o grupo compartilhado. Sem isso, quem você adicionar fica só nesta tela.');return}
+    db=d;
+    const t=setTimeout(()=>status('O grupo compartilhado está demorando para carregar.','bad'),10000);
+    db.collection('members').onSnapshot(snap=>{
+      if(!snap.metadata.fromCache){clearTimeout(t);status(snap.size?`Grupo compartilhado: ${snap.size} pessoa${snap.size>1?'s':''} salva${snap.size>1?'s':''} para todo mundo ver.`:'Grupo compartilhado vazio. Quem você adicionar aqui aparece para todo mundo.')}
+      const m=new Map();snap.docs.forEach(doc=>{const x=doc.data();if(x&&typeof x.name==='string'&&typeof x.url==='string')m.set(x.name.toLowerCase(),{name:x.name.slice(0,40),url:x.url,photo:typeof x.photo==='string'&&x.photo.startsWith('data:image/')?x.photo:''})});
+      remote=m;build();
+    },e=>{clearTimeout(t);status('Não consegui carregar o grupo compartilhado.','bad')});
+  }catch(e){status('Grupo compartilhado indisponível aqui.')}
+})();
+
+/* ---------- math ---------- */
+const act=()=>people.filter(p=>p.on);
+function stat(k,P=act()){const v=P.map(p=>p.vals[k]),n=v.length||1,mean=v.reduce((a,b)=>a+b,0)/n;
+  return {mean,sd:Math.sqrt(v.reduce((a,b)=>a+(b-mean)**2,0)/n),min:Math.min(...v),max:Math.max(...v)}}
+const sim=(a,b)=>100-KEYS.reduce((s,k)=>s+Math.abs(a.vals[k]-b.vals[k]),0)/12;
+// leaning words for a vector of left-% values
+function leanings(get){return AXES.map((a,ai)=>{const v=get(a.k),d=v-50;return {a,ai,v,d,side:d>=0?'L':'R',str:Math.abs(d),word:d>=0?a.aL:a.aR,pole:d>=0?a.L:a.R,pct:d>=0?v:100-v}}).sort((x,y)=>y.str-x.str)}
+function title(get){
+  const l=leanings(get).filter(x=>x.str>=10);
+  if(!l.length)return 'Centrista';
+  const w=l.slice(0,3).map(x=>x.word);
+  // "Progressista" + "secular" + "tecnófilo"
+  return w[0]+(w[1]?' '+w[1].toLowerCase():'')+(w[2]?' '+w[2].toLowerCase():'');
+}
+
+/* ---------- sections ---------- */
+function hero(){
+  const P=act();
+  $('stack').innerHTML=P.map(p=>av(p,64)).join('');
+  if(!P.length){$('ideo').textContent='Ninguém selecionado';$('pills').innerHTML='';return}
+  const get=k=>stat(k).mean;
+  $('ideo').textContent=title(get);
+  $('groupLink').href=SITE+'/results?'+KEYS.map(k=>k+'='+(Math.round(get(k)*10)/10)).join('&');
+  $('groupLink').innerHTML=EXT+'Ver ideologia, políticos e países do grupo no 12 Axes';
+  const l=leanings(get);
+  $('pills').innerHTML=l.filter(x=>x.str>=10).map(x=>`<span class="pill" style="--c:${x.side==='L'?x.a.a:x.a.b}">${esc(x.pole)} ${Math.round(x.pct)}%</span>`).join('')+
+    l.filter(x=>x.str<10).map(x=>`<span class="pill n">${esc(x.a.n)}: centro</span>`).join('');
+  $('ideoNote').textContent=`Calculada pela média de ${P.length} pessoa${P.length>1?'s':''}: o nome junta as 3 posições mais fortes do grupo. As pílulas mostram para que lado o grupo pende em cada eixo (centro = entre 40% e 60%).`;
+}
+
+function chips(){
+  $('chips').innerHTML=people.map((p,i)=>`<div class="chip ${p.on?'':'off'}" style="--pc:${col(i)}"><span data-t="${i}" style="display:contents">${av(p,34,'cursor:pointer')}</span><input type="text" data-n="${i}" value="${esc(p.name)}"><label class="cam" title="Colocar foto">${CAM}<input type="file" accept="image/*" data-f="${i}" hidden></label>${p.remote&&dbWritable?`<button class="rm" title="Tirar do grupo compartilhado" data-rm="${i}">×</button>`:''}</div>`).join('')+
+   `<div class="chip ${showAvg?'':'off'}" style="--pc:var(--fg)"><span data-t="avg" class="av" style="width:34px;height:34px;background:var(--fg);color:var(--card);cursor:pointer">◆</span><b style="padding:0 8px 0 2px">Média</b></div>`;
+  $('chips').querySelectorAll('[data-t]').forEach(el=>el.onclick=()=>{const t=el.dataset.t;if(t==='avg')showAvg=!showAvg;else people[t].on=!people[t].on;render()});
+  $('chips').querySelectorAll('[data-n]').forEach(el=>el.onchange=()=>{people[el.dataset.n].name=el.value||'Sem nome';render()});
+  bindPhotos($('chips'));
+  $('chips').querySelectorAll('[data-rm]').forEach(el=>el.onclick=()=>removeRemote(people[el.dataset.rm].name));
+}
+
+function mini(p,i){const R=60;const pt=(j,v)=>{const a=-Math.PI/2+2*Math.PI*j/12,r=R*v/100;return [r*Math.cos(a),r*Math.sin(a)]};
+  let s='';[50,100].forEach(g=>s+=`<polygon points="${AXES.map((_,j)=>pt(j,g).join(',')).join(' ')}" fill="none" stroke="var(--line)"/>`);
+  AXES.forEach((a,j)=>{const [x,y]=pt(j,100);s+=`<line x1="0" y1="0" x2="${x}" y2="${y}" stroke="${catOf(j).c}" stroke-opacity=".3"/>`});
+  s+=`<polygon points="${AXES.map((a,j)=>pt(j,p.vals[a.k]).join(',')).join(' ')}" fill="${col(i)}" fill-opacity=".3" stroke="${col(i)}" stroke-width="2.5" stroke-linejoin="round"/>`;
+  return `<svg class="mini" viewBox="-66 -66 132 132">${s}</svg>`}
+function profiles(){
+  $('profiles').innerHTML=people.map((p,i)=>{
+    const l=leanings(k=>p.vals[k]).slice(0,3);
+    const o=people.filter(q=>q!==p).map(q=>({q,v:sim(p,q)})).sort((x,y)=>y.v-x.v);
+    const rel=p.religion?`<span class="tag">${esc(REL[p.religion.toLowerCase()]||p.religion)}</span>`:'';
+    return `<div class="prof" style="--pc:${col(i)}"><div class="top"></div>
+      <label style="display:block">${av(p,84,'margin:-46px auto 0;border:5px solid var(--soft);position:relative;cursor:pointer').replace('class="av"','class="av big"')}<input type="file" accept="image/*" data-f="${i}" hidden></label>
+      <div class="body"><h3>${esc(p.name)}</h3><div class="lab">${esc(title(k=>p.vals[k]))}</div>${rel}${mini(p,i)}
+      <div class="sec">Posições mais fortes</div>
+      ${l.map(x=>`<div class="strong"><span class="ico s" style="--c:${x.side==='L'?x.a.a:x.a.b}">${x.a.i}</span>${esc(x.pole)}<span class="v">${Math.round(x.pct)}%</span></div>`).join('')}
+      <a class="site sm" href="${esc(p.url)}" target="_blank" rel="noopener">${EXT}Ver no 12 Axes</a>
+      ${o.length?`<div class="mate">${av(o[0].q,30)}<div><small>Mais próximo</small><b>${esc(o[0].q.name)}</b></div><span style="margin-left:auto;font-weight:900">${Math.round(o[0].v)}%</span></div>`:''}
+      ${o.length>1?`<div class="mate">${av(o[o.length-1].q,30)}<div><small>Mais distante</small><b>${esc(o[o.length-1].q.name)}</b></div><span style="margin-left:auto;font-weight:900">${Math.round(o[o.length-1].v)}%</span></div>`:''}
+      </div></div>`}).join('');
+  bindPhotos($('profiles'));
+}
+
+function fights(){
+  const P=act();
+  if(P.length<2){$('fights').innerHTML='<p class="hint">Precisa de pelo menos 2 pessoas.</p>';$('cons').innerHTML='';return}
+  const rows=AXES.map((a,ai)=>({a,ai,...stat(a.k,P)}));
+  const top=[...rows].sort((x,y)=>y.sd-x.sd).slice(0,4);
+  $('fights').innerHTML=top.map(r=>{
+    const a=r.a,L=P.filter(p=>p.vals[a.k]>=50).sort((x,y)=>y.vals[a.k]-x.vals[a.k]),R=P.filter(p=>p.vals[a.k]<50).sort((x,y)=>x.vals[a.k]-y.vals[a.k]);
+    const who=(p,pct)=>`<div class="who">${av(p,26)}${esc(p.name)} <span>${Math.round(pct)}%</span></div>`;
+    return `<div class="fight"><div class="h"><span class="ico s" style="--c:${catOf(r.ai).c}">${a.i}</span>${esc(a.n)}<small>divergência ${r.sd.toFixed(1)}</small></div>
+      <div class="vs"><div class="side" style="--pc:${a.a}"><span class="t">${esc(a.L)}</span>${L.map(p=>who(p,p.vals[a.k])).join('')||'<span class="hint">ninguém</span>'}</div>
+      <span class="x">VS</span>
+      <div class="side r" style="--pc:${a.b}"><span class="t">${esc(a.R)}</span>${R.map(p=>who(p,100-p.vals[a.k])).join('')||'<span class="hint">ninguém</span>'}</div></div></div>`}).join('');
+  const agree=rows.filter(r=>r.max<50||r.min>=50).sort((x,y)=>x.sd-y.sd);
+  $('cons').innerHTML=agree.length?agree.map(r=>{const L=r.min>=50,pct=L?r.mean:100-r.mean;
+    return `<div class="con" style="--pc:${L?r.a.a:r.a.b}"><span class="ico s" style="--c:${L?r.a.a:r.a.b}">${r.a.i}</span><span>Todo mundo é <b>${esc(L?r.a.L:r.a.R)}</b> (${Math.round(pct)}% em média)</span></div>`}).join('')
+    :'<p class="hint">Não tem nenhum eixo em que todo mundo esteja do mesmo lado.</p>';
+}
+
+function duelSec(){
+  const opts=people.map((p,i)=>`<option value="${i}">${esc(p.name)}</option>`).join('');
+  $('dA').innerHTML=opts;$('dB').innerHTML=opts;
+  if(people.length<2){$('duel').innerHTML='<p class="hint">Precisa de pelo menos 2 pessoas.</p>';$('duelLink').style.display='none';return}
+  $('dA').value=duel[0];$('dB').value=duel[1];
+  const A=people[duel[0]],B=people[duel[1]];
+  if(A===B){$('duel').innerHTML='<p class="hint">Escolha duas pessoas diferentes.</p>';$('duelLink').style.display='none';return}
+  const rows=AXES.map(a=>({a,va:A.vals[a.k],vb:B.vals[a.k],d:Math.abs(A.vals[a.k]-B.vals[a.k])}));
+  const same=rows.filter(r=>(r.va>=50)===(r.vb>=50)).length;
+  const sorted=[...rows].sort((x,y)=>x.d-y.d);
+  let h=`<div class="duelhead"><div class="dp">${av(A,56)}${esc(A.name)}</div>
+    <div class="score"><b>${Math.round(sim(A,B))}%</b><small>proximidade</small></div>
+    <div class="dp r">${av(B,56)}${esc(B.name)}</div></div>
+    <p class="hint" style="text-align:center;margin-bottom:12px">Do mesmo lado em <b>${same} de 12</b> eixos. Mais perto em <b>${esc(sorted[0].a.n)}</b>, mais longe em <b>${esc(sorted[11].a.n)}</b>.</p>`;
+  h+=rows.map(r=>{const pa=100-r.va,pb=100-r.vb,lo=Math.min(pa,pb),hi=Math.max(pa,pb);const ok=(r.va>=50)===(r.vb>=50);
+    return `<div class="drow"><span>${esc(r.a.n)}<span class="badge ${ok?'ok':'no'}">${ok?'juntos':'separados'}</span></span>
+      <div class="dtrack" title="${esc(r.a.L)} ← → ${esc(r.a.R)}"><div class="line"></div><div class="gap" style="left:${lo}%;width:${hi-lo}%;background:linear-gradient(90deg,${r.a.a},${r.a.b})"></div>
+      ${av(A,24,`left:${pa}%`).replace('class="av"','class="av" data-tip="'+esc(A.name)+': '+esc(r.va>=50?Math.round(r.va)+'% '+r.a.L:Math.round(100-r.va)+'% '+r.a.R)+'"')}
+      ${av(B,24,`left:${pb}%`).replace('class="av"','class="av" data-tip="'+esc(B.name)+': '+esc(r.vb>=50?Math.round(r.vb)+'% '+r.a.L:Math.round(100-r.vb)+'% '+r.a.R)+'"')}</div>
+      <span class="dd">${r.d.toFixed(1)}</span></div>`}).join('');
+  $('duel').innerHTML=h;
+  const q=new URLSearchParams();q.set('an',A.name);q.set('a',KEYS.map(k=>A.vals[k]).join(','));if(A.religion)q.set('ra',A.religion);
+  q.set('bn',B.name);q.set('b',KEYS.map(k=>B.vals[k]).join(','));if(B.religion)q.set('rb',B.religion);
+  $('duelLink').href=SITE+'/compare/people?'+q.toString();$('duelLink').innerHTML=EXT+`Ver a compatibilidade oficial de ${esc(A.name)} × ${esc(B.name)} no 12 Axes`;$('duelLink').style.display='inline-flex';
+}
+
+function axes(){
+  const P=act();let h='';
+  CATS.forEach(c=>{
+    h+=`<div class="cat-title" style="--c:${c.c}"><span class="cat-ico">${c.i}</span>${c.n}</div>`;
+    c.ax.forEach((ai,j)=>{const a=AXES[ai],s=stat(a.k,P),m=P.length?s.mean:50;
+      const lp=Math.round(m),rp=100-lp;
+      h+=`<div class="axis" style="--a:${a.a};--b:${a.b}"><div class="axis-head"><span class="ico" style="--c:${c.c}">${a.i}</span><b>${esc(a.n)}</b><span class="div">divergência <b>${P.length>1?s.sd.toFixed(1):'-'}</b></span></div>
+      <div class="poles"><span>${esc(a.L)}</span><span>${esc(a.R)}</span></div>
+      <div class="split" data-tip="Média do grupo: ${lp}% ${esc(a.L)} · ${rp}% ${esc(a.R)}"><div class="seg l" style="width:${m}%">${lp>=12?lp+'%':''}</div><div class="seg r">${rp>=12?rp+'%':''}</div></div>
+      <div class="lane"><div class="line"></div><div class="mid"></div>`+
+      (P.length>1?`<div class="range" style="left:${100-s.max}%;width:${s.max-s.min}%"></div>`:'')+
+      P.map((p,k)=>{const v=p.vals[a.k];return av(p,30,`left:${100-v}%;animation-delay:${.3+k*.06}s`).replace('class="av"',`class="av dot" data-tip="${esc(p.name)}: ${v>=50?Math.round(v)+'% '+esc(a.L):Math.round(100-v)+'% '+esc(a.R)}"`)}).join('')+
+      `</div></div>`});
+  });
+  $('axes').innerHTML=h;
+}
+
+function radar(){
+  const R=135;let s='';const P=act();
+  const pt=(i,v)=>{const a=-Math.PI/2+2*Math.PI*i/12,r=R*v/100;return [r*Math.cos(a),r*Math.sin(a)]};
+  CATS.forEach((c,ci)=>{let d='M0 0';for(let t=ci*3-.5;t<=ci*3+2.5001;t+=.25){const a=-Math.PI/2+2*Math.PI*t/12;d+=` L${R*Math.cos(a)} ${R*Math.sin(a)}`}s+=`<path d="${d}Z" fill="${c.c}" fill-opacity=".07"/>`});
+  [25,50,75,100].forEach(g=>s+=`<polygon points="${AXES.map((_,i)=>pt(i,g).join(',')).join(' ')}" fill="none" stroke="var(--line)" stroke-width="${g===50?1.5:1}"/>`);
+  AXES.forEach((a,i)=>{const [x,y]=pt(i,100),[lx,ly]=pt(i,120);s+=`<line x1="0" y1="0" x2="${x}" y2="${y}" stroke="var(--line)"/><text x="${lx}" y="${ly}" text-anchor="middle" dominant-baseline="middle" style="fill:${catOf(i).c}">${esc(a.L)}</text>`});
+  P.forEach(p=>{const c=col(people.indexOf(p)),Q=AXES.map((a,i)=>pt(i,p.vals[a.k]));
+    s+=`<polygon points="${Q.map(q=>q.join(',')).join(' ')}" fill="${c}" fill-opacity=".1" stroke="${c}" stroke-width="2.5" stroke-linejoin="round"/>`+Q.map(q=>`<circle cx="${q[0]}" cy="${q[1]}" r="3.2" fill="${c}"/>`).join('')});
+  if(showAvg&&P.length>1)s+=`<polygon points="${AXES.map((a,i)=>pt(i,stat(a.k,P).mean).join(',')).join(' ')}" fill="none" stroke="var(--fg)" stroke-width="2" stroke-dasharray="6 4"/>`;
+  $('radar').innerHTML=s;
+}
+
+const heat=v=>`hsl(${Math.max(0,Math.min(1,(v-50)/45))*140} 62% 44%)`;
+function aff(){
+  const P=act();
+  if(P.length<2){$('aff').innerHTML='<tr><td style="color:var(--mut);background:none">Precisa de pelo menos 2 pessoas.</td></tr>';return}
+  let h='<tr><th></th>'+P.map(p=>`<th>${av(p,32,'display:inline-grid')}</th>`).join('')+'</tr>';
+  P.forEach(a=>{h+=`<tr><th style="text-align:right">${esc(a.name)}</th>`+P.map(b=>a===b?'<td class="self">-</td>':`<td style="background:${heat(sim(a,b))}" data-d="${people.indexOf(a)},${people.indexOf(b)}">${Math.round(sim(a,b))}</td>`).join('')+'</tr>'});
+  $('aff').innerHTML=h;
+  $('aff').querySelectorAll('[data-d]').forEach(td=>td.onclick=()=>{duel=td.dataset.d.split(',').map(Number);duelSec();$('dA').scrollIntoView({behavior:'smooth',block:'center'})});
+}
+
+function table(){
+  const P=act();
+  let h='<tr><th>Eixo (polo da esquerda)</th>'+P.map(p=>`<th style="color:${col(people.indexOf(p))}">${esc(p.name)}</th>`).join('')+'<th>Média</th><th>Mín</th><th>Máx</th><th>Divergência</th></tr>';
+  AXES.forEach(a=>{const s=stat(a.k,P);h+=`<tr><td>${esc(a.n)} <span style="color:var(--mut);font-weight:600">(${esc(a.L)})</span></td>`+P.map(p=>`<td>${p.vals[a.k].toFixed(1)}</td>`).join('')+
+    `<td><b>${s.mean.toFixed(1)}</b></td><td>${s.min.toFixed(1)}</td><td>${s.max.toFixed(1)}</td><td>${s.sd.toFixed(1)}</td></tr>`});
+  $('tbl').innerHTML=h;
+}
+
+function render(){hero();chips();profiles();fights();duelSec();axes();radar();aff();table()}
+
+const tip=$('tip');
+document.addEventListener('mouseover',e=>{const t=e.target.closest('[data-tip]');if(t){tip.textContent=t.dataset.tip;tip.style.opacity=1}});
+document.addEventListener('mousemove',e=>{tip.style.left=(e.clientX+12)+'px';tip.style.top=(e.clientY-30)+'px'});
+document.addEventListener('mouseout',e=>{if(e.target.closest('[data-tip]'))tip.style.opacity=0});
+$('dA').onchange=()=>{duel[0]=+$('dA').value;duelSec()};
+$('dB').onchange=()=>{duel[1]=+$('dB').value;duelSec()};
+$('go').onclick=parse;
+$('ex').onclick=async()=>{const P=act();
+  const t=['Eixo',...P.map(p=>p.name),'Média'].join('\t')+'\n'+AXES.map(a=>[a.n+' ('+a.L+')',...P.map(p=>p.vals[a.k].toFixed(1)),stat(a.k,P).mean.toFixed(1)].join('\t')).join('\n');
+  try{await navigator.clipboard.writeText(t);$('ex').textContent='Copiado!'}catch(e){$('ex').textContent='Não deu para copiar'}
+  setTimeout(()=>$('ex').textContent='Copiar tabela',1500)};
+if(ON_CLAUDE)$('shareBtn').style.display='none';
+$('shareBtn').onclick=async()=>{const url=location.origin+location.pathname+'?g='+encodeURIComponent(encodeGroup());
+  try{await navigator.clipboard.writeText(url);$('shareBtn').textContent='Link copiado!'}catch(e){$('shareBtn').textContent='Não deu para copiar'}
+  setTimeout(()=>$('shareBtn').textContent='Copiar link do grupo',1800)};
+function useList(list){$('inp').value=list.map(e=>e.name+': '+e.url).join('\n');parse()}
+(async()=>{
+  const g=new URLSearchParams(location.search).get('g');
+  if(g){const l=decodeGroup(g);if(l.length){useList(l);return}}
+  if(!ON_CLAUDE){try{const r=await fetch('grupo.json',{cache:'no-store'});if(r.ok){const j=await r.json();
+    const l=(Array.isArray(j)?j:j.pessoas||[]).map(x=>({name:String(x.nome||x.name||'').slice(0,40),url:String(x.link||x.url||'')})).filter(x=>x.name&&readLink(x.url));
+    if(l.length){useList(l);return}}}catch(e){}}
+  parse();
+})();
+</script>
+</body>
+</html>
