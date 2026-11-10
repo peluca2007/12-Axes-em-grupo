@@ -2,5 +2,6 @@
   { "nome": "Peluca",    "link": "https://12axes.vercel.app/results?est=28.3&rep=46.3&pod=82&imi=20&dip=60&int=40&eco=85.5&con=80.8&com=71.7&rel=95.8&mor=88.3&tec=87" },
   { "nome": "Bruno",     "link": "https://12axes.vercel.app/results?est=49.2&rep=67.2&pod=61.2&imi=40.8&dip=64.2&int=31.7&eco=48&con=55.8&com=63.3&rel=45.8&mor=67.5&tec=16.7&religion=orthodox" },
   { "nome": "Ninja",     "link": "https://12axes.vercel.app/results?est=36.3&rep=35.8&pod=72.5&imi=38.7&dip=55.8&int=44.2&eco=44.5&con=61.5&com=48.7&rel=49.2&mor=22.8&tec=66.2&religion=catholic" },
-  { "nome": "Petiquers", "link": "https://12axes.vercel.app/results?est=36.3&rep=94.5&pod=73&imi=36.3&dip=36.3&int=51.2&eco=85.5&con=54.3&com=63.7&rel=62.5&mor=45&tec=32.5&religion=orthodox" }
+  { "nome": "Petiquers", "link": "https://12axes.vercel.app/results?est=36.3&rep=94.5&pod=73&imi=36.3&dip=36.3&int=51.2&eco=85.5&con=54.3&com=63.7&rel=62.5&mor=45&tec=32.5&religion=orthodox" },
+  { "nome": "Miguel",    "link": "https://12axes.vercel.app/results?est=42.5&rep=50.8&pod=48&imi=55&dip=48.8&int=57.5&eco=41.8&con=29.8&com=41.8&rel=87.5&mor=45&tec=37.5" }
 ]
